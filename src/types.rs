@@ -1,24 +1,42 @@
-// use std::collections::HashMap;
+use clap;
+
+pub const CLAP_STYLING: clap::builder::styling::Styles = clap::builder::styling::Styles::styled()
+            .header(clap_cargo::style::HEADER)
+            .usage(clap_cargo::style::USAGE)
+            .literal(clap_cargo::style::LITERAL)
+            .placeholder(clap_cargo::style::PLACEHOLDER)
+            .error(clap_cargo::style::ERROR)
+            .valid(clap_cargo::style::VALID)
+            .invalid(clap_cargo::style::INVALID);
 
 
-pub struct Layer{
-    pub order: i32,
-    pub name: String,
-    
-    pub prefix: Option<String>,
+pub struct Clix {
+    pub name: &str,
 
-    pub commands: Vec<String>,
-
-    pub optional: bool
-}
-
-// PREFIX ORDER = -, +, --, ++, ---, +++
-
-pub struct Clix{
-    pub name: String,
     pub version: String,
 
-    pub total: Vec<Layer>,
+    pub subcommand_required: bool,
+    
+    pub command_required: bool,
 
 }
 
+
+
+
+pub struct Subcommand {
+    pub name: &str,
+
+
+    pub parameters: bool,
+    pub options: bool,
+
+}
+
+impl Clix {
+    pub fn new() {
+        Command::new("git")
+        .about("A fictional versioning CLI")
+        .subcommand_required(true)
+    }
+}
