@@ -1,14 +1,12 @@
 use std::env;
 
 mod types;
-use types::{Layer, Clix};
+use types::{Clix};
 
-use cla
 
-pub fn entry() -> String{
-    let args: Vec<String> = env::args().collect();
-    dbg!(&args);
-
-    return args[2].clone();
+pub fn entry() {
+    let cli = Clix::new("clix", "0.1.0")
+        .edit_about("A dragon in the making");
+        
 }
 
